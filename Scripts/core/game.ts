@@ -22,7 +22,7 @@ var assetData:objects.Asset[] = [
     {id: "SlotMachine", src:"../../Assets/images/SlotMachine.png"},
     {id: "Bet100Button", src:"../../Assets/images/Bet100Button.png"},
     {id: "Bet150Button", src:"../../Assets/images/Bet150Button.png"},
-    {id: "Bet500BUtton", src:"../../Assets/images/Bet500BUtton.png"},
+    {id: "Bet500BUtton", src:"../../Assets/images/Bet500Button.png"},
     {id: "SpinButton", src:"../../Assets/images/SpinButton.png"},
 ];
 

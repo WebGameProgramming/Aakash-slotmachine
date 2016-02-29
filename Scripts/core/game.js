@@ -20,6 +20,16 @@ var assetData = [
     { id: "Bet150Button", src: "../../Assets/images/Bet150Button.png" },
     { id: "Bet500Button", src: "../../Assets/images/Bet500Button.png" },
     { id: "SpinButton", src: "../../Assets/images/SpinButton.png" },
+    { id: "BlackBackground", src: "../../Assets/images/BlackBackground.png" },
+    { id: "WhiteBackground", src: "../../Assets/images/WhiteBackground.png" },
+    { id: "Blank", src: "../../Assets/images/Blank.png" },
+    { id: "Orange", src: "../../Assets/images/Orange.png" },
+    { id: "Grapes", src: "../../Assets/images/Grapes.png" },
+    { id: "Banana", src: "../../Assets/images/Banana.png" },
+    { id: "Cherry", src: "../../Assets/images/Cherry.png" },
+    { id: "Bell", src: "../../Assets/images/Bell.png" },
+    { id: "Bar", src: "../../Assets/images/Bar.png" },
+    { id: "Seven", src: "../../Assets/images/Seven.png" },
 ];
 function preload() {
     assets = new createjs.LoadQueue();
@@ -92,4 +102,5 @@ function changeScene() {
     }
     console.log(currentScene.numChildren);
 }
+window.onload = preload;
 //# sourceMappingURL=game.js.map

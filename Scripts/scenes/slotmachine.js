@@ -23,6 +23,10 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         SlotMachine.prototype.start = function () {
+            this._reels = new Array();
+            for (var reel; reel < 3; reel++) {
+                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
+            }
             // add backgroundimage to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
@@ -55,7 +59,7 @@ var scenes;
         };
         /* When this function is called it determines the betLine results.
         e.g. Bar - Orange - Banana */
-        SlotMachine.prototype._reels = function () {
+        SlotMachine.prototype._spinReels = function () {
             var betLine = [" ", " ", " "];
             var outCome = [0, 0, 0];
             for (var spin = 0; spin < 3; spin++) {
@@ -108,8 +112,14 @@ var scenes;
             console.log("bet 500 credited");
         };
         SlotMachine.prototype._SpinButtonClick = function (event) {
-            console.log("Spin the reels");
-            console.log(this._reels());
+            // console.log("Spin the reels");
+            var reel = this._spinReels();
+            this._reels[0].image = assets.getResult(reel[0]);
+            this._reels[0].x = 224;
+            this._reels[0].y = 173;
+            this.addChild(this._reels[0]);
+            // console.log(this._reels());
+            console.log(this.numChildren);
         };
         return SlotMachine;
     })(objects.Scene);

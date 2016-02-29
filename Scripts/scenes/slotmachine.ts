@@ -7,6 +7,7 @@ module scenes {
         private _Bet150Button: objects.Button;
         private _Bet500Button: objects.Button;
         private _SpinButton: objects.Button;
+        private _reels:createjs.Bitmap[];
 
         private _grapes = 0;
         private _bananas = 0;
@@ -25,7 +26,14 @@ module scenes {
         // PUBLIC METHODS +++++++++++++++++++++
         
         // Start Method
-        public start(): void {    
+        public start(): void {
+            this._reels=new Array<createjs.Bitmap>();
+            for(var reel:number;reel<3;reel++){
+                
+                this._reels[reel]= new createjs.Bitmap(assets.getResult("Blank"));
+            }
+            
+                
             // add backgroundimage to the scene
             
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
@@ -76,7 +84,7 @@ module scenes {
         
         /* When this function is called it determines the betLine results.
         e.g. Bar - Orange - Banana */
-        private _reels(): string[] {
+        private _spinReels(): string[] {
             var betLine = [" ", " ", " "];
             var outCome = [0, 0, 0];
 
@@ -119,9 +127,6 @@ module scenes {
             }
             return betLine;
         }
-
-        
-        
         //EVENT HANDLERS ++++++++++++++++++++
         private _Bet100ButtonClick(event: createjs.MouseEvent): void {
             console.log("bet 100 credited");
@@ -135,15 +140,17 @@ module scenes {
 
         private _Bet500ButtonClick(event: createjs.MouseEvent): void {
             console.log("bet 500 credited");
-
         }
 
         private _SpinButtonClick(event: createjs.MouseEvent): void {
-            console.log("Spin the reels");
-            console.log(this._reels());
-
+           // console.log("Spin the reels");
+            var reel:string[]=this._spinReels();
+            this._reels[0].image= assets.getResult(reel[0]);
+            this._reels[0].x=224;
+            this._reels[0].y=173;
+            this.addChild(this._reels[0]);
+            // console.log(this._reels());
+           console.log(this.numChildren);
         }
     }
-
-
 }

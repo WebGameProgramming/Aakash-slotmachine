@@ -42,14 +42,11 @@ var scenes;
             this._SpinButton = new objects.Button("SpinButton", 399, 306, false);
             this.addChild(this._SpinButton);
             this._SpinButton.on("click", this._SpinButtonClick, this);
-            // Initialize the arrays
-            this._reels = new Array();
-            for (var reel = 0; reel < 3; reel++) {
-                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
-                this._reels[reel].x = 223 + (reel * 78);
-                this._reels[reel].y = 173;
-                this.addChild(this._reels[reel]);
-            }
+            // add Jackpot text to the scene
+            this._jackpotText = new objects.Label("0", "15px Times New Roman", "#000000", 295, 98, false);
+            this.addChild(this._jackpotText);
+            //Initializa of Array
+            this._initializeBitmapArray();
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -104,6 +101,16 @@ var scenes;
                 }
             }
             return betLine;
+        };
+        SlotMachine.prototype._initializeBitmapArray = function () {
+            // Initialize the arrays
+            this._reels = new Array();
+            for (var reel = 0; reel < 3; reel++) {
+                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
+                this._reels[reel].x = 223 + (reel * 78);
+                this._reels[reel].y = 173;
+                this.addChild(this._reels[reel]);
+            }
         };
         //EVENT HANDLERS ++++++++++++++++++++
         SlotMachine.prototype._Bet100ButtonClick = function (event) {

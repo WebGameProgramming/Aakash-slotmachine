@@ -7,7 +7,11 @@ module scenes {
         private _Bet150Button: objects.Button;
         private _Bet500Button: objects.Button;
         private _SpinButton: objects.Button;
-        private _reels:createjs.Bitmap[];
+        private _reels: createjs.Bitmap[];
+        private _jackpotText: objects.Label;
+        private _creditText: objects.Label;
+        private _betText: objects.Label;
+        private _resultText: objects.Label;
 
         private _grapes = 0;
         private _bananas = 0;
@@ -61,15 +65,18 @@ module scenes {
             this.addChild(this._SpinButton);
             this._SpinButton.on("click", this._SpinButtonClick, this);
             
-            // Initialize the arrays
-            this._reels=new Array<createjs.Bitmap>();
-            for(var reel:number=0; reel < 3; reel++){
-                
-                this._reels[reel]= new createjs.Bitmap(assets.getResult("Blank"));
-                this._reels[reel].x=223 + (reel * 78);
-                this._reels[reel].y=173;
-                this.addChild(this._reels[reel]);
-               }
+            // add Jackpot text to the scene
+            
+            this._jackpotText=new objects.Label(
+                "0",
+                "15px Times New Roman",
+                "#000000",
+                295,98,false );
+            this.addChild(this._jackpotText);    
+            
+            //Initializa of Array
+            
+            this._initializeBitmapArray();    
                 
             // add this scene to the global stage container
             stage.addChild(this);
@@ -131,6 +138,21 @@ module scenes {
             }
             return betLine;
         }
+
+        private _initializeBitmapArray(): void {
+            // Initialize the arrays
+            this._reels = new Array<createjs.Bitmap>();
+            for (var reel: number = 0; reel < 3; reel++) {
+
+                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
+                this._reels[reel].x = 223 + (reel * 78);
+                this._reels[reel].y = 173;
+                this.addChild(this._reels[reel]);
+            }
+
+        }
+    
+        
         //EVENT HANDLERS ++++++++++++++++++++
         private _Bet100ButtonClick(event: createjs.MouseEvent): void {
             console.log("bet 100 credited");
@@ -147,14 +169,13 @@ module scenes {
         }
 
         private _SpinButtonClick(event: createjs.MouseEvent): void {
-           // console.log("Spin the reels");
-            var bitmap:string[]=this._spinReels();
-          
-          for(var reel:number=0; reel< 3; reel++)
-          {
-               this._reels[reel].image= assets.getResult(bitmap[reel]);
-          }
-          
+            // console.log("Spin the reels");
+            var bitmap: string[] = this._spinReels();
+
+            for (var reel: number = 0; reel < 3; reel++) {
+                this._reels[reel].image = assets.getResult(bitmap[reel]);
+            }
+
         }
     }
 }
